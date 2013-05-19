@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ -z "$2" ]; then
+  echo "Usage: runon <machine> <command>"
+  exit 1
+fi
+
+MACHINE="$1"
+shift
+exec ssh -XC $MACHINE $@
