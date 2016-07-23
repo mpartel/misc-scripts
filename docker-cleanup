@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+echo "Removing exited containers"
+docker ps -aq -f status=exited | xargs --no-run-if-empty docker rm
+
+echo "Removing dangling images"
+docker images -q --no-trunc -f dangling=true | xargs --no-run-if-empty docker rmi
